@@ -5,7 +5,7 @@
 | Column              | Type   | Options                | 
 | ------------------- | ------ | ---------------------- | 
 | nickname            | string | NOT NULL               | 
-| mail                | string | NOT NULL, UNIQUE: true | 
+| email               | string | NOT NULL, UNIQUE: true | 
 | encrypted_password  | string | NOT NULL               | 
 | name1               | string | NOT NULL               | 
 | name2               | string | NOT NULL               | 
@@ -30,7 +30,7 @@
 | category_id     | integer   | NOT NULL, ActiveHash        | 
 | condition_id    | integer   | NOT NULL, ActiveHash        | 
 | fee_id          | integer   | NOT NULL, ActiveHash        | 
-| area_id         | integer   | NOT NULL, ActiveHash        | 
+| prefecture_id   | integer   | NOT NULL, ActiveHash        | 
 | shippingdate_id | integer   | NOT NULL, ActiveHash        | 
 
 ## Association
@@ -57,14 +57,14 @@
 
 ## shippingaddress tabel
 
-| Column         | Type      | Options           | 
-| -------------- | --------- | ----------------- | 
-| order          | reference | foreign_key: true | 
-| postalcode     | string    | NOT NULL          | 
-| prefecture_id  | integer   | NOT,ActiveHash    | 
-| municipalities | string    | NOT NULL          | 
-| housenum       | string    | NOT NULL          | 
-| building       | string    |                   | 
-| tel            | string    | NOT NULL          | 
+| Column         | Type      | Options             | 
+| -------------- | --------- | ------------------- | 
+| order          | reference | foreign_key: true   | 
+| postalcode     | string    | NOT NULL            | 
+| prefecture_id  | integer   | NOT NULL,ActiveHash | 
+| municipalities | string    | NOT NULL            | 
+| housenum       | string    | NOT NULL            | 
+| building       | string    |                     | 
+| tel            | string    | NOT NULL            | 
 
 - belongs_to :order
