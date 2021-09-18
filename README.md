@@ -2,16 +2,16 @@
 
 ## users table
 
-| Column    | Type   | Options  | 
-| --------- | ------ | -------- | 
-| nickname  | string | NOT NULL | 
-| mail      | string | NOT NULL | 
-| password  | string | NOT NULL | 
-| name1     | string | NOT NULL | 
-| name2     | string | NOT NULL | 
-| furigana1 | string | NOT NULL | 
-| furigana2 | string | NOT NULL | 
-| birthday  | date   | NOT NULL | 
+| Column              | Type   | Options                | 
+| ------------------- | ------ | ---------------------- | 
+| nickname            | string | NOT NULL               | 
+| mail                | string | NOT NULL, UNIQUE: true | 
+| encrypted_password  | string | NOT NULL               | 
+| name1               | string | NOT NULL               | 
+| name2               | string | NOT NULL               | 
+| furigana1           | string | NOT NULL               | 
+| furigana2           | string | NOT NULL               | 
+| birthday            | date   | NOT NULL               | 
 
 ### Association
 
@@ -21,18 +21,17 @@
 
 ## items table
 
-| Column       | Type      | Options       | 
-| ------------ | --------- | ------------- | 
-| user         | reference | NOT NULL      | 
-| price        | string    | NOT NULL      | 
-| description  | string    | NOT NULL      | 
-| image        |           | ActiveStorage | 
-| sellername   | string    | NOT NULL      | 
-| category     | string    | NOT NULL      | 
-| condition    | string    | NOT NULL      | 
-| fee          | string    | NOT NULL      | 
-| area         | string    | NOT NULL      | 
-| shippingdate | date      | NOT NULL      | 
+| Column          | Type      | Options               | 
+| --------------- | --------- | --------------------- | 
+| user            | reference | NOT NULL              | 
+| price           | integer   | NOT NULL              | 
+| description     | text      | NOT NULL              | 
+| sellername      | string    | NOT NULL              | 
+| category_id     | integer   | NOT NULL, ActiveHash  | 
+| condition_id    | integer   | NOT NULL, ActiveHash  | 
+| fee_id          | integer   | NOT NULL, ActiveHash  | 
+| area_id         | integer   | NOT NULL, ActiveHash  | 
+| shippingdate_id | integer   | NOT NULL, ActiveHash  | 
 
 ## Association
 
@@ -63,10 +62,10 @@
 | -------------- | --------- | ----------------- | 
 | order          | reference | foreign_key: true | 
 | postalcode     | string    | NOT NULL          | 
-| prefectures    | string    | NOT NULL          | 
+| prefecture_id  | integer   | NOT,ActiveHash    | 
 | municipalities | string    | NOT NULL          | 
 | housenum       | string    | NOT NULL          | 
-| building       | string    | NOT NULL          | 
+| building       | string    |                   | 
 | tel            | string    | NOT NULL          | 
 
 - belongs_to :order
