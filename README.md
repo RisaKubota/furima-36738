@@ -11,7 +11,7 @@
 | name2     | string | NOT NULL | 
 | furigana1 | string | NOT NULL | 
 | furigana2 | string | NOT NULL | 
-| birthday  | string | NOT NULL | 
+| birthday  | date   | NOT NULL | 
 
 ### Association
 
