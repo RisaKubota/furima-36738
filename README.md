@@ -1,24 +1,72 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## users table
 
-* Ruby version
+| Column    | Type   | Options  | 
+| --------- | ------ | -------- | 
+| nickname  | string | NOT NULL | 
+| mail      | string | NOT NULL | 
+| password  | string | NOT NULL | 
+| name1     | string | NOT NULL | 
+| name2     | string | NOT NULL | 
+| furigana1 | string | NOT NULL | 
+| furigana2 | string | NOT NULL | 
+| birthday  | string | NOT NULL | 
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :items
+- has_many :orders
 
-* Database creation
 
-* Database initialization
+## items table
 
-* How to run the test suite
+| Column       | Type      | Options       | 
+| ------------ | --------- | ------------- | 
+| user         | reference | NOT NULL      | 
+| price        | string    | NOT NULL      | 
+| description  | string    | NOT NULL      | 
+| image        |           | ActiveStorage | 
+| sellername   | string    | NOT NULL      | 
+| category     | string    | NOT NULL      | 
+| condition    | string    | NOT NULL      | 
+| fee          | string    | NOT NULL      | 
+| area         | string    | NOT NULL      | 
+| shippingdate | date      | NOT NULL      | 
 
-* Services (job queues, cache servers, search engines, etc.)
+## Association
 
-* Deployment instructions
+- belongs_to :user
+- has_one :order
 
-* ...
+
+
+## order table
+
+| Column | Type      | Options           | 
+| ------ | --------- | ----------------- | 
+| user   | reference | foreign_key: true | 
+| item   | reference | foreign_key: true | 
+
+## Association
+
+- belongs_to :user
+- belongs_to :order
+- has_one :shippingaddress
+
+
+
+## shippingaddress tabel
+
+
+| Column         | Type      | Options           | 
+| -------------- | --------- | ----------------- | 
+| order          | reference | foreign_key: true | 
+| postalcode     | string    | NOT NULL          | 
+| prefectures    | string    | NOT NULL          | 
+| municipalities | string    | NOT NULL          | 
+| housenum       | string    | NOT NULL          | 
+| building       | string    | NOT NULL          | 
+| tel            | string    | NOT NULL          | 
+
+- belongs_to :order
