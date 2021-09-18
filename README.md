@@ -21,17 +21,17 @@
 
 ## items table
 
-| Column          | Type      | Options               | 
-| --------------- | --------- | --------------------- | 
-| user            | reference | NOT NULL              | 
-| price           | integer   | NOT NULL              | 
-| description     | text      | NOT NULL              | 
-| sellername      | string    | NOT NULL              | 
-| category_id     | integer   | NOT NULL, ActiveHash  | 
-| condition_id    | integer   | NOT NULL, ActiveHash  | 
-| fee_id          | integer   | NOT NULL, ActiveHash  | 
-| area_id         | integer   | NOT NULL, ActiveHash  | 
-| shippingdate_id | integer   | NOT NULL, ActiveHash  | 
+| Column          | Type      | Options                     | 
+| --------------- | --------- | --------------------------- | 
+| user            | reference | NOT NULL, foreign_key: true | 
+| price           | integer   | NOT NULL                    | 
+| description     | text      | NOT NULL                    | 
+| sellername      | string    | NOT NULL                    | 
+| category_id     | integer   | NOT NULL, ActiveHash        | 
+| condition_id    | integer   | NOT NULL, ActiveHash        | 
+| fee_id          | integer   | NOT NULL, ActiveHash        | 
+| area_id         | integer   | NOT NULL, ActiveHash        | 
+| shippingdate_id | integer   | NOT NULL, ActiveHash        | 
 
 ## Association
 
@@ -56,7 +56,6 @@
 
 
 ## shippingaddress tabel
-
 
 | Column         | Type      | Options           | 
 | -------------- | --------- | ----------------- | 
