@@ -6,12 +6,15 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :name1
-    validates :name2
-      with_options format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ } do
-        validates :furigana1
-        validates :furigana2
-      end
+    with_options format: { with: /\A[ぁ-んァ-ン一-龥々]/} do
+      validates :name1
+      validates :name2
+    end
+    with_options format: { with: /\A[ァ-ヶー－]+\z/ } do
+      validates :furigana1
+      validates :furigana2
+    end
     validates :birthday
+    validates :password,format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i }
   end
 end
