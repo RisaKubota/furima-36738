@@ -5,19 +5,20 @@ class Item < ApplicationRecord
   belongs_to :fee
   belongs_to :prefecture
   belongs_to :shippingdate
+  belongs_to :user, optional: true
   has_one_attached :image
 
   with_options presence: true do
-    validates :user_id
-    validates :price
-    validates :description
-    validates :sellername
+    validates :image
+    validates :sellername, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 }
+    validates :price, numericality: { with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters" }
+    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range" }
+
   end
-
-    validates :category_id, numericality: { other_than: 1 , message: "Category can't be blank"}
-    validates :condition_id, numericality: { other_than: 1 , message: "Condition can't be blank"}
-    validates :fee_id, numericality: { other_than: 1 , message: "Fee can't be blank"}
-    validates :prefecture_id, numericality: { other_than: 1 , message: "Prefecture can't be blank"}
-    validates :shippingdate_id, numericality: { other_than: 1 , message: "Shippingdate can't be blank"}
-
+    validates :category_id, numericality: { other_than: 0 , message: "can't be blank"}
+    validates :condition_id, numericality: { other_than: 0 , message: "can't be blank"}
+    validates :fee_id, numericality: { other_than: 0 , message: "can't be blank"}
+    validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank"}
+    validates :shippingdate_id, numericality: { other_than: 0 , message: "can't be blank"}
 end
