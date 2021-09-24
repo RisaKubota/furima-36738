@@ -14,6 +14,9 @@ RSpec.describe Item, type: :model do
   
     context '商品の登録が出来ない場合' do
       it '画像が空では登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Image can't be blank"
       end
       it '商品名が空では登録できない' do
         @item.sellername = ""
@@ -56,19 +59,18 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
       it '販売価格が300円未満では登録出来ない' do
-        @item.price = "200"
+        @item.price = 200
         @item.valid?
         expect(@item.errors.full_messages).to include "Price is out of setting range"
       end
       it '販売価格が10,000,000円以上では登録出来ない' do
-        @item.price = "10000000"
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include "Price is out of setting range"
       end
       it '販売価格は全角では登録出来ない' do
         @item.price = "５００"
         @item.valid?
-        # binding.pry
         expect(@item.errors.full_messages).to include "Price is invalid. Input half-width characters"
       end
       it '商品名が40文字以下でなければ登録できない' do
@@ -80,6 +82,11 @@ RSpec.describe Item, type: :model do
         @item.description = "a" * 1001
         @item.valid?
         expect(@item.errors.full_messages).to include "Description is too long (maximum is 1000 characters)"
+      end
+      it 'userが紐付いていなければ登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
