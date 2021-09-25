@@ -16,8 +16,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def show  商品詳細機能時使用
-  # end
+  def show
+    @item = Item.find(params[:id])
+    @user = @item.user
+  end
 
 
   private
