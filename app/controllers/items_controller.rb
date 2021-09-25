@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    @items = Item.all.order(created_at: "DESC")
   end
 
   def new
@@ -14,6 +15,9 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+
+  # def show  商品詳細機能時使用
+  # end
 
 
   private
