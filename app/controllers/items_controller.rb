@@ -16,8 +16,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def show  商品詳細機能時使用
-  # end
+  def show
+  end
 
 
   private
