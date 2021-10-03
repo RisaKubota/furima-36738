@@ -21,6 +21,9 @@ class ItemsController < ApplicationController
 
   def show
     @user = @item.user
+    if @item.order.present? || @item.user.id == current_user.id
+      redirect_to root_path
+    end
   end
 
   def edit
