@@ -20,8 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @user = @item.user
-    if @item.order.present? || @item.user.id == current_user.id
+    if @item.order.present?
       redirect_to root_path
     end
   end
