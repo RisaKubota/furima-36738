@@ -3,7 +3,8 @@ FactoryBot.define do
     gimei = Gimei.name
     nickname {Faker::Games::Pokemon.name}
     email { Faker::Internet.free_email }
-    password { Faker::Internet.password(min_length: 6) }
+    password { '1a' + Faker::Internet.password(min_length: 6) }
+              #  '1a' + テストコードに不具合が生じるため追加で記述しています
     password_confirmation { password }
     name1 {gimei.last.kanji}
     name2 {gimei.first.kanji }
