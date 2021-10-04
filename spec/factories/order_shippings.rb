@@ -7,5 +7,7 @@ FactoryBot.define do
     building {'フォルム本町'}
     tel {'09024140134'}
     token {'tok_abcdefghijk00000000000000000'}
+    # association :user
+    # association :item
   end
 end

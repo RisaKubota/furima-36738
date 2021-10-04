@@ -34,7 +34,6 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.municipalities = ''
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include "Municipalities can't be blank"
-
       end
       it '番地が空だと保存できない' do
         @order_shipping.housenum = ''
@@ -56,6 +55,16 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include "Tel is invalid"
       end
+      it '電話番号が12桁以上でば保存できない' do
+        @order_shipping.tel = '0123456789123'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include "Tel is invalid"
+      end
+      it '電話番号に半角数字以外が含まれている場合は購入できない' do
+        @order_shipping.tel = '012345678a'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include "Tel is invalid"
+      end
       it '都道府県が−−−では保存できない' do
         @order_shipping.prefecture_id = "0"
         @order_shipping.valid?
@@ -65,6 +74,16 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.token = ''
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include "Token can't be blank"
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @order_shipping.user_id = nil
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include "User can't be blank"
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @order_shipping.item_id = nil
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include "Item can't be blank"
       end
     end
   end
