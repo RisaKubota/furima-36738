@@ -1,12 +1,11 @@
 const pay = () =>{
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
-  console.log(123)
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     e.preventDefault();
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
-
+    
     // フォーム情報の取得
     const card = {
       number: formData.get("order_shipping[number]"),
@@ -19,8 +18,10 @@ const pay = () =>{
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
+        // const tokenObj = `<input value=${token} type="hidden" name='token'>`;
+        const tokenObj = `<input value=${token} name='token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
+        console.log(token)
       }
 
       // クレジットカード情報を削除
