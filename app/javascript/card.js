@@ -5,7 +5,7 @@ const pay = () =>{
     e.preventDefault();
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
-    
+
     // フォーム情報の取得
     const card = {
       number: formData.get("order_shipping[number]"),
@@ -18,10 +18,8 @@ const pay = () =>{
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        // const tokenObj = `<input value=${token} type="hidden" name='token'>`;
-        const tokenObj = `<input value=${token} name='token'>`;
+        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-        console.log(token)
       }
 
       // クレジットカード情報を削除
@@ -30,7 +28,7 @@ const pay = () =>{
       document.getElementById("card-exp-month").removeAttribute("name");
       document.getElementById("card-exp-year").removeAttribute("name");
       // フォームの情報をサーバーサイドへ送信
-      // document.getElementById("charge-form").submit();
+      document.getElementById("charge-form").submit();
     });
   });
 };
