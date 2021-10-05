@@ -30,7 +30,7 @@ const pay = () =>{
       document.getElementById("card-exp-month").removeAttribute("name");
       document.getElementById("card-exp-year").removeAttribute("name");
       // フォームの情報をサーバーサイドへ送信
-      document.getElementById("charge-form").submit();
+      // document.getElementById("charge-form").submit();
     });
   });
 };
